@@ -1,10 +1,10 @@
-package com.example.projectmanagement.ui.slideshow
+package com.example.projectmanagement.ui.projects
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SlideshowViewModel : ViewModel() {
+class ProjectsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is slideshow Fragment"
