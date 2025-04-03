@@ -18,21 +18,21 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.loginButton.setOnClickListener {
+            val username = binding.username.text.toString()
+            val password = binding.password.text.toString()
+            loginViewModel.login(username, password)
+        }
+        //        Observe the loginResult LiveData from the ViewModel
         loginViewModel.loginResult.observe(this) { success ->
             if (success) {
-                Toast.makeText(this, "Login successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Successfully login", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
             }
-        }
-
-        binding.loginButton.setOnClickListener {
-            val username = binding.username.text.toString()
-            val password = binding.password.text.toString()
-            loginViewModel.login(username, password)
         }
     }
 }

@@ -25,10 +25,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             val user = repository.getUserByUsername(username)
             if (user != null) {
                 if (user.password == password) {
-                    Log.d("LoginViewModel", "Login successful for user: $username")
+                    Log.d("LoginViewModel", "Login successful")
                     _loginResult.value = true
                 } else {
-                    Log.e("LoginViewModel", "Incorrect password for user: $username")
+                    Log.e("LoginViewModel", "Incorrect password")
                     _loginResult.value = false
                 }
             } else {
