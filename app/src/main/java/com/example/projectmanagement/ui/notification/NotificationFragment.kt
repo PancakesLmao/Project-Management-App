@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.projectmanagement.databinding.FragmentNotificationBinding
+import com.example.projectmanagement.viewmodel.NotificationViewModel
 
 class NotificationFragment : Fragment() {
 

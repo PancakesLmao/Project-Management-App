@@ -1,13 +1,13 @@
-package com.example.projectmanagement.ui.notification
+package com.example.projectmanagement.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationViewModel : ViewModel() {
+class ProjectsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notification Fragment"
+        value = "This is projects Fragment"
     }
     val text: LiveData<String> = _text
 }

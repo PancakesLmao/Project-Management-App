@@ -1,13 +1,13 @@
-package com.example.projectmanagement.ui.projects
+package com.example.projectmanagement.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ProjectsViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is projects Fragment"
+        value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
 }
