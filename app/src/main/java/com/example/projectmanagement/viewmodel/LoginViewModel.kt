@@ -14,6 +14,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: UserRepository
     private val _loginResult = MutableLiveData<Boolean>()
     val loginResult: LiveData<Boolean> get() = _loginResult
+    private val _userEmail = MutableLiveData<String?>()
+    val userEmail: LiveData<String?> get() = _userEmail
 
     init {
         val userDao = AppDatabase.getDatabase(application).userDao()
@@ -24,8 +26,10 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val user = repository.getUserByUsername(username)
             if (user != null) {
+                Log.d("LoginViewModel", "User retrieved: $user")
                 if (user.password == password) {
                     Log.d("LoginViewModel", "Login successful")
+                    _userEmail.postValue(user.email)
                     _loginResult.value = true
                 } else {
                     Log.e("LoginViewModel", "Incorrect password")

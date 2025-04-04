@@ -11,10 +11,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val logoutResult: LiveData<Boolean> get() = _logoutResult
 
     private val _username = MutableLiveData<String>()
+    private val _email = MutableLiveData<String>()
     val username: LiveData<String> get() = _username
+    val email: LiveData<String> get() = _email
 
     fun setUsername(username: String) {
         _username.postValue(username)
+    }
+    fun setEmail(email: String) {
+        _email.postValue(email)
     }
     fun logout() {
 //        Crashed

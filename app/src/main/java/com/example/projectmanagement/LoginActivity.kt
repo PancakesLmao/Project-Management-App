@@ -2,6 +2,7 @@ package com.example.projectmanagement
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -27,10 +28,17 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this) { success ->
             if (success) {
                 Toast.makeText(this, "Successfully login", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.putExtra("username", binding.username.text.toString()) // Pass current username to MainActivity
-                startActivity(intent)
-                finish()
+                loginViewModel.userEmail.observe(this) { email ->
+                    if (!email.isNullOrEmpty()) {
+                        val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("username", binding.username.text.toString())
+                        intent.putExtra("email", email)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Email not found", Toast.LENGTH_SHORT).show()
+                    }
+                }
             } else {
                 Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show()
             }

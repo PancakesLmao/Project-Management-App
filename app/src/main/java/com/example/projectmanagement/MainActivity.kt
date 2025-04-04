@@ -49,13 +49,21 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         val username = intent.getStringExtra("username")
+        val email = intent.getStringExtra("email")
         if (username != null) {
             mainViewModel.setUsername(username)
+        }
+        if (email != null) {
+            mainViewModel.setEmail(email)
         }
         val headerView: View = navView.getHeaderView(0)
         val userNameTextView: TextView = headerView.findViewById(R.id.userNameTextView)
         mainViewModel.username.observe(this) { updatedUsername ->
             userNameTextView.text = updatedUsername
+        }
+        val userEmailTextView: TextView = headerView.findViewById(R.id.userEmailTextView)
+        mainViewModel.email.observe(this) { updatedEmail ->
+            userEmailTextView.text = updatedEmail
         }
 
         navView.setNavigationItemSelectedListener { menuItem ->

@@ -23,7 +23,7 @@ class AppApplication : Application() {
             // Now you can safely call the suspend function within the coroutine
             val existingUser = userDao.getUserByUsername("admin")
             if (existingUser == null) {
-                userDao.insertUser(User(username = "admin", password = "123"))
+                userDao.insertUser(User(username = "admin", password = "123", email = "admin_itealab@gmail.com"))
             }
         }
     }
