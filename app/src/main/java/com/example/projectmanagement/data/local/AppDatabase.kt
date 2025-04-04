@@ -6,14 +6,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.projectmanagement.data.model.Notification
+import com.example.projectmanagement.data.model.Project
 import com.example.projectmanagement.data.model.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [User::class], version = 2)
+@Database(entities = [User::class, Project::class, Notification::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun projectsDao() : ProjectsDAO
+    abstract fun notificationDao() : NotificationDAO
 
     companion object {
         @Volatile

@@ -26,7 +26,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             val user = repository.getUserByUsername(username)
             if (user != null) {
-                Log.d("LoginViewModel", "User retrieved: $user")
+//                Log.d("LoginViewModel", "User retrieved: $user")
                 if (user.password == password) {
                     Log.d("LoginViewModel", "Login successful")
                     _userEmail.postValue(user.email)
