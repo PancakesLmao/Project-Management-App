@@ -10,6 +10,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _logoutResult = MutableLiveData<Boolean>()
     val logoutResult: LiveData<Boolean> get() = _logoutResult
 
+    private val _username = MutableLiveData<String>()
+    val username: LiveData<String> get() = _username
+
+    fun setUsername(username: String) {
+        _username.postValue(username)
+    }
     fun logout() {
 //        Crashed
 //        _logoutResult.value = true

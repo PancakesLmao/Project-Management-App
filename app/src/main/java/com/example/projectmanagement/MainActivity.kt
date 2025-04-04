@@ -3,6 +3,8 @@ package com.example.projectmanagement
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -45,6 +47,16 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val username = intent.getStringExtra("username")
+        if (username != null) {
+            mainViewModel.setUsername(username)
+        }
+        val headerView: View = navView.getHeaderView(0)
+        val userNameTextView: TextView = headerView.findViewById(R.id.userNameTextView)
+        mainViewModel.username.observe(this) { updatedUsername ->
+            userNameTextView.text = updatedUsername
+        }
 
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {

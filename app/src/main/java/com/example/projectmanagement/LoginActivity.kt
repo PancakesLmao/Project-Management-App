@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
             if (success) {
                 Toast.makeText(this, "Successfully login", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("username", binding.username.text.toString()) // Pass current username to MainActivity
                 startActivity(intent)
                 finish()
             } else {
