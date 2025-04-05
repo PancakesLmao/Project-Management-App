@@ -23,11 +23,9 @@ class ProjectsViewModel(application: Application) : AndroidViewModel(application
     private fun loadProjects() {
         viewModelScope.launch {
             try {
-                // Assuming you'll add this function to ProjectsDAO
                 val projectList = projectsDAO.getAllProjects()
                 _projects.postValue(projectList)
             } catch (e: Exception) {
-                // Handle error
                 _projects.postValue(emptyList())
             }
         }

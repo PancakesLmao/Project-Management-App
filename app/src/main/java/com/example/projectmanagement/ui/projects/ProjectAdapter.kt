@@ -12,6 +12,7 @@ class ProjectAdapter(private val projects: List<Project>) : RecyclerView.Adapter
         fun bind(project: Project) {
             binding.projectName.text = project.name
             binding.projectDescription.text = project.description
+            binding.projectDueDate.text = "Due date: ${project.dueDate}"
         }
     }
 
@@ -20,8 +21,8 @@ class ProjectAdapter(private val projects: List<Project>) : RecyclerView.Adapter
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(projects[position])
+    override fun onBindViewHolder(holder: ViewHolder, index: Int) {
+        holder.bind(projects[index])
     }
 
     override fun getItemCount() = projects.size
