@@ -13,6 +13,7 @@ class ProjectAdapter(private val projects: List<Project>) : RecyclerView.Adapter
             binding.projectName.text = project.name
             binding.projectDescription.text = project.description
             binding.projectDueDate.text = "Due date: ${project.dueDate}"
+            binding.projectStatus.text = "Status: ${project.status}"
         }
     }
 

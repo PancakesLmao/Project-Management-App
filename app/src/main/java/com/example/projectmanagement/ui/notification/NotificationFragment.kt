@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectmanagement.databinding.FragmentNotificationBinding
 import com.example.projectmanagement.viewmodel.NotificationViewModel
 
@@ -14,8 +15,6 @@ class NotificationFragment : Fragment() {
 
     private var _binding: FragmentNotificationBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,10 +28,13 @@ class NotificationFragment : Fragment() {
         _binding = FragmentNotificationBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotification
-        notificationViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Set up RecyclerView
+        binding.recyclerViewNotifications.layoutManager = LinearLayoutManager(context)
+        // Observe notifications data
+        notificationViewModel.notifications.observe(viewLifecycleOwner) { notifications ->
+            binding.recyclerViewNotifications.adapter = NotificationAdapter(notifications)
         }
+
         return root
     }
 

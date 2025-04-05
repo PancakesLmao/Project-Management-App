@@ -6,16 +6,18 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.projectmanagement.data.model.Notification
 import com.example.projectmanagement.data.model.Project
 import com.example.projectmanagement.data.model.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [User::class, Project::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Project::class, Notification::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun projectsDao(): ProjectsDAO
+    abstract fun notificationDao() : NotificationDAO
 
     companion object {
         @Volatile
@@ -83,13 +85,36 @@ abstract class AppDatabase : RoomDatabase() {
                     description = "Implement the app's user interface",
                     startDate = "2023-06-01",
                     dueDate = "2023-07-15",
-                    status = "Not Started",
+                    status = "In Progress",
                     createdBy = userId.toInt()
                 )
             )
 
             projects.forEach { project ->
                 projectsDao.insertProject(project)
+            }
+
+            val notificationDao = database.notificationDao()
+            val notifications = listOf(
+                Notification(
+                    heading = "Project Started",
+                    content = "Android Development project has started",
+                    fromProject = 1
+                ),
+                Notification(
+                    heading = "Deadline Approaching",
+                    content = "Database Design project is due in 2 days",
+                    fromProject = 2
+                ),
+                Notification(
+                    heading = "New Task Added",
+                    content = "A new task was added to UI Implementation",
+                    fromProject = 3
+                )
+            )
+
+            notifications.forEach { notification ->
+                notificationDao.insertNotification(notification)
             }
 
             Log.d("AppDatabase", "Created ${projects.size} sample projects")
