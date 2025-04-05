@@ -12,6 +12,7 @@ class NotificationAdapter(private val notifications: List<Notification>) : Recyc
         fun bind(notification: Notification) {
             binding.notificationHeading.text = notification.heading
             binding.notificationContent.text = notification.content
+            binding.notificationDate.text = "Due date: ${notification.eventDueDate}"
         }
     }
 

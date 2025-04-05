@@ -20,5 +20,6 @@ data class Notification(
     @PrimaryKey(autoGenerate = true) val notificationId: Int = 0,
     val heading: String,
     val content: String,
-    val fromProject: Int
+    val fromProject: Int,
+    val eventDueDate: String
 )

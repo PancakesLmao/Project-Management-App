@@ -97,7 +97,8 @@ abstract class AppDatabase : RoomDatabase() {
                 val notification = Notification(
                     heading = "Project Due Date",
                     content = "Don't forget your deadline for ${project.name}",
-                    fromProject = projectId.toInt()
+                    fromProject = projectId.toInt(),
+                    eventDueDate = project.dueDate
                 )
 
                 notificationDao.insertNotification(notification)
