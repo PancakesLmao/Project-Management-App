@@ -12,4 +12,10 @@ interface ProjectsDAO {
 
     @Query("SELECT * FROM projects WHERE projectId = :projectId")
     suspend fun getProjectById(projectId: Int): Project?
+
+    @Query("SELECT * FROM projects")
+    suspend fun getAllProjects(): List<Project>
+
+//    @Query("SELECT * FROM projects LIMIT 4")
+//    suspend fun getAllProjectsLimited(): List<Project>
 }

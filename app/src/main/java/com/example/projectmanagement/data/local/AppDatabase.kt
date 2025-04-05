@@ -6,18 +6,16 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.projectmanagement.data.model.Notification
 import com.example.projectmanagement.data.model.Project
 import com.example.projectmanagement.data.model.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [User::class, Project::class, Notification::class], version = 1, exportSchema = false)
+@Database(entities = [User::class, Project::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
-    abstract fun projectsDao() : ProjectsDAO
-    abstract fun notificationDao() : NotificationDAO
+    abstract fun projectsDao(): ProjectsDAO
 
     companion object {
         @Volatile
@@ -28,9 +26,8 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_database"
+                    "project_management_database"
                 )
-                    .fallbackToDestructiveMigration() // destroy and recreates on schema change
                     .addCallback(DatabaseCallback())
                     .build()
                 INSTANCE = instance
@@ -42,18 +39,60 @@ abstract class AppDatabase : RoomDatabase() {
     private class DatabaseCallback : Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            Log.d("AppDatabase", "Database created")
 
-            CoroutineScope(Dispatchers.IO).launch {
-                INSTANCE?.userDao()?.insertUser(
-                    User(
-                        username = "admin",
-                        password = "123",
-                        email = "admin_itealab@gmail.com"
-                    )
-                )
-                Log.d("AppDatabase", "Default user inserted")
+            INSTANCE?.let { database ->
+                CoroutineScope(Dispatchers.IO).launch {
+                    populateDatabase(database)
+                }
             }
+        }
+
+        private suspend fun populateDatabase(database: AppDatabase) {
+            // First create a user
+            val userDao = database.userDao()
+            val userId = userDao.insertUser(
+                User(
+                    username = "admin",
+                    password = "123",
+                    email = "admin@example.com"
+                )
+            )
+
+            Log.d("AppDatabase", "Created default user with ID: $userId")
+
+            val projectsDao = database.projectsDao()
+            val projects = listOf(
+                Project(
+                    name = "Android Development",
+                    description = "Create a project management app",
+                    startDate = "2023-05-01",
+                    dueDate = "2023-08-31",
+                    status = "In Progress",
+                    createdBy = userId.toInt()
+                ),
+                Project(
+                    name = "Database Design",
+                    description = "Design a Room database for the app",
+                    startDate = "2023-04-15",
+                    dueDate = "2023-05-15",
+                    status = "Completed",
+                    createdBy = userId.toInt()
+                ),
+                Project(
+                    name = "UI Implementation",
+                    description = "Implement the app's user interface",
+                    startDate = "2023-06-01",
+                    dueDate = "2023-07-15",
+                    status = "Not Started",
+                    createdBy = userId.toInt()
+                )
+            )
+
+            projects.forEach { project ->
+                projectsDao.insertProject(project)
+            }
+
+            Log.d("AppDatabase", "Created ${projects.size} sample projects")
         }
     }
 }

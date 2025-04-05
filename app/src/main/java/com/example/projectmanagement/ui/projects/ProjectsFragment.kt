@@ -4,18 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectmanagement.databinding.FragmentProjectsBinding
 import com.example.projectmanagement.viewmodel.ProjectsViewModel
 
 class ProjectsFragment : Fragment() {
 
     private var _binding: FragmentProjectsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,10 +26,14 @@ class ProjectsFragment : Fragment() {
         _binding = FragmentProjectsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
-        projectsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        // Set up RecyclerView
+        binding.recyclerViewProjects.layoutManager = LinearLayoutManager(context)
+
+        // Observe projects data
+        projectsViewModel.projects.observe(viewLifecycleOwner) { projects ->
+            binding.recyclerViewProjects.adapter = ProjectAdapter(projects)
         }
+
         return root
     }
 
