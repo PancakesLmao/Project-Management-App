@@ -8,7 +8,7 @@ import com.example.projectmanagement.data.model.Notification
 @Dao
 interface NotificationDAO {
     @Insert
-    suspend fun insertNotification(notification: Notification)
+    suspend fun insertNotification(notification: Notification) : Long
 
     @Query("SELECT * FROM notifications WHERE notificationId = :notificationId")
     suspend fun getNotificationById(notificationId: Int): Notification?

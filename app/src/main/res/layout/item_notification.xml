@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -12,13 +13,16 @@
     <ImageView
         android:layout_width="48dp"
         android:layout_height="48dp"
+        android:contentDescription="event_image"
         android:src="@drawable/ic_menu_notification"
-        android:layout_marginEnd="12dp" />
+        android:layout_marginEnd="12dp"
+        tools:ignore="HardcodedText" />
 
     <!-- Notification content -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:paddingHorizontal="20dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
@@ -28,7 +32,8 @@
             android:layout_height="wrap_content"
             android:text="Event #%d"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/notification_content"
@@ -36,14 +41,16 @@
             android:layout_height="wrap_content"
             android:text="You have a new project update."
             android:textSize="14sp"
-            android:textColor="#555555" />
+            android:textColor="#555555"
+            tools:ignore="HardcodedText" />
         <TextView
             android:id="@+id/notification_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="%s"
             android:textSize="14sp"
-            android:textColor="#555555" />
+            android:textColor="#555555"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <View

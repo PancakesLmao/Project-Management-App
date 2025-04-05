@@ -63,6 +63,7 @@ abstract class AppDatabase : RoomDatabase() {
             Log.d("AppDatabase", "Created default user with ID: $userId")
 
             val projectsDao = database.projectsDao()
+            val notificationDao = database.notificationDao()
             val projects = listOf(
                 Project(
                     name = "Android Development",
@@ -91,29 +92,14 @@ abstract class AppDatabase : RoomDatabase() {
             )
 
             projects.forEach { project ->
-                projectsDao.insertProject(project)
-            }
+                val projectId = projectsDao.insertProject(project)
 
-            val notificationDao = database.notificationDao()
-            val notifications = listOf(
-                Notification(
-                    heading = "Project Started",
-                    content = "Android Development project has started",
-                    fromProject = 1
-                ),
-                Notification(
-                    heading = "Deadline Approaching",
-                    content = "Database Design project is due in 2 days",
-                    fromProject = 2
-                ),
-                Notification(
-                    heading = "New Task Added",
-                    content = "A new task was added to UI Implementation",
-                    fromProject = 3
+                val notification = Notification(
+                    heading = "Project Due Date",
+                    content = "Don't forget your deadline for ${project.name}",
+                    fromProject = projectId.toInt()
                 )
-            )
 
-            notifications.forEach { notification ->
                 notificationDao.insertNotification(notification)
             }
 

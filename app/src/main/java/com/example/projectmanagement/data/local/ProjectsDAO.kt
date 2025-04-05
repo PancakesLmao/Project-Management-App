@@ -8,7 +8,7 @@ import com.example.projectmanagement.data.model.Project
 @Dao
 interface ProjectsDAO {
     @Insert
-    suspend fun insertProject(project: Project)
+    suspend fun insertProject(project: Project) : Long
 
     @Query("SELECT * FROM projects WHERE projectId = :projectId")
     suspend fun getProjectById(projectId: Int): Project?
