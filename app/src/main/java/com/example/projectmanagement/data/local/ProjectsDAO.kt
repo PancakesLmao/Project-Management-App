@@ -2,6 +2,7 @@ package com.example.projectmanagement.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.projectmanagement.data.model.Project
 
@@ -18,4 +19,7 @@ interface ProjectsDAO {
 
 //    @Query("SELECT * FROM projects LIMIT 4")
 //    suspend fun getAllProjectsLimited(): List<Project>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNewProject(project: Project): Long
 }

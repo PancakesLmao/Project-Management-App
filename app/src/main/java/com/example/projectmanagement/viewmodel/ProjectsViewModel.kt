@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 class ProjectsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val projectsDAO = AppDatabase.getDatabase(application).projectsDao()
-
     private val _projects = MutableLiveData<List<Project>>()
     val projects: LiveData<List<Project>> = _projects
 
@@ -29,5 +28,8 @@ class ProjectsViewModel(application: Application) : AndroidViewModel(application
                 _projects.postValue(emptyList())
             }
         }
+    }
+    fun refreshProjects() {
+        loadProjects()
     }
 }

@@ -27,15 +27,20 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel.loginResult.observe(this) { success ->
             if (success) {
                 Toast.makeText(this, "Successfully login", Toast.LENGTH_SHORT).show()
+
+                // Observe both email and userId before start MainActivity
                 loginViewModel.userEmail.observe(this) { email ->
-                    if (!email.isNullOrEmpty()) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        intent.putExtra("username", binding.username.text.toString())
-                        intent.putExtra("email", email)
-                        startActivity(intent)
-                        finish()
-                    } else {
-                        Toast.makeText(this, "Email not found", Toast.LENGTH_SHORT).show()
+                    loginViewModel.userId.observe(this) { userId ->
+                        if (!email.isNullOrEmpty() && userId != null) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("username", binding.username.text.toString())
+                            intent.putExtra("email", email)
+                            intent.putExtra("userId", userId)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Toast.makeText(this, "User information not found", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
             } else {
