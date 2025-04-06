@@ -17,7 +17,8 @@ class CreateProjectViewModel(application: Application) : AndroidViewModel(applic
 
     init {
         val projectsDao = AppDatabase.getDatabase(application).projectsDao()
-        repository = CreateProjectRepository(projectsDao)
+        val notificationDao = AppDatabase.getDatabase(application).notificationDao()
+        repository = CreateProjectRepository(projectsDao, notificationDao)
     }
 
     fun createNewProject(name: String, description: String, startDate: String, dueDate: String, createdBy: Int) {

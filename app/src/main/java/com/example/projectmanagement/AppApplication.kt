@@ -13,14 +13,12 @@ class AppApplication : Application() {
         initializeDatabase()
     }
     private fun initializeDatabase() {
-        val db = AppDatabase.getDatabase(applicationContext) // Now applicationContext is available
+        val db = AppDatabase.getDatabase(applicationContext)
         val userDao = db.userDao()
 
-        // Create a coroutine scope tied to the application lifecycle
         val applicationScope = CoroutineScope(SupervisorJob())
 
         applicationScope.launch {
-            // Now you can safely call the suspend function within the coroutine
             val existingUser = userDao.getUserByUsername("admin")
             if (existingUser == null) {
                 userDao.insertUser(User(username = "admin", password = "123", email = "admin_itealab@gmail.com"))
