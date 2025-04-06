@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_btn_text">back to projects list</string>
+    <string name="time_range_textview">TIME RANGE</string>
+    <string name="delete_btn_text">DELETE</string>
+    <string name="update_btn_text">UPDATE</string>
+    <string name="create_btn_text">CREATE</string>
+</resources>

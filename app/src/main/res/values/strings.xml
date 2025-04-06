@@ -13,4 +13,13 @@
     <string name="logout_button">Logout</string>
     <string name="title_activity_main2">MainActivity2</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="back_btn_text">back to projects list</string>
+    <string name="start_date_hint">Start date</string>
+    <string name="end_date_hint">End date</string>
+    <string name="project_name_textview">PROJECT NAME</string>
+    <string name="project_desc_textview">PROJECT DESCRIPTION</string>
+    <string name="time_range_textview">TIME RANGE</string>
+    <string name="delete_btn_text">DELETE</string>
+    <string name="update_btn_text">UPDATE</string>
+    <string name="create_btn_text">CREATE</string>
 </resources>

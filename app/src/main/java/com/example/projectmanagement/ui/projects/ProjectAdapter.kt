@@ -8,7 +8,7 @@ import com.example.projectmanagement.databinding.ItemProjectBinding
 
 class ProjectAdapter(private val projects: List<Project>) : RecyclerView.Adapter<ProjectAdapter.ViewHolder>() {
 
-    class ViewHolder(private val binding: ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(internal val binding: ItemProjectBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(project: Project) {
             binding.projectName.text = project.name
             binding.projectDescription.text = project.description
@@ -24,6 +24,13 @@ class ProjectAdapter(private val projects: List<Project>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, index: Int) {
         holder.bind(projects[index])
+
+        holder.binding.editProjectBtn.setOnClickListener {
+            val intent = android.content.Intent(holder.itemView.context, com.example.projectmanagement.EditActivity::class.java).apply {
+                putExtra("project_id", projects[index].projectId)
+            }
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = projects.size
