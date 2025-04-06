@@ -27,7 +27,7 @@ class ProjectAdapter(private val projects: List<Project>) : RecyclerView.Adapter
 
         holder.binding.editProjectBtn.setOnClickListener {
             val intent = android.content.Intent(holder.itemView.context, com.example.projectmanagement.EditActivity::class.java).apply {
-                putExtra("project_id", projects[index].projectId)
+                putExtra("PROJECT_ID", projects[index].projectId)
             }
             holder.itemView.context.startActivity(intent)
         }

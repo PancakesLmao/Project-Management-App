@@ -20,7 +20,7 @@
       app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
-      android:id="@+id/tvEditProject"
+      android:id="@+id/edit_project_heading"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="48dp"
@@ -43,10 +43,10 @@
       android:textSize="18sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/tvEditProject" />
+      app:layout_constraintTop_toBottomOf="@id/edit_project_heading" />
 
   <EditText
-      android:id="@+id/etProjectName"
+      android:id="@+id/edit_project_name"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
@@ -71,10 +71,10 @@
       android:textSize="18sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/etProjectName" />
+      app:layout_constraintTop_toBottomOf="@id/edit_project_name" />
 
   <EditText
-      android:id="@+id/etProjectDescription"
+      android:id="@+id/edit_project_desc"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
@@ -100,7 +100,7 @@
       android:textSize="18sp"
       android:textStyle="bold"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/etProjectDescription" />
+      app:layout_constraintTop_toBottomOf="@id/edit_project_desc" />
 
   <LinearLayout
       android:id="@+id/time_range"
