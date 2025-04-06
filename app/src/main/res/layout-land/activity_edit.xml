@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    tools:context=".CreateProjectActivity">
+
+  <ImageButton
+      android:id="@+id/back_btn"
+      android:layout_width="50dp"
+      android:layout_height="50dp"
+      android:scaleY="1.3"
+      android:scaleX="1.3"
+      android:background="@null"
+      android:contentDescription="@string/back_btn_text"
+      android:src="@drawable/ic_back"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+      android:id="@+id/edit_project_heading"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="48dp"
+      android:text="EDIT PROJECT"
+      android:textColor="@color/darkTea"
+      android:textSize="28sp"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      tools:ignore="HardcodedText" />
+
+  <TextView
+      android:id="@+id/project_name_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="48dp"
+      android:text="@string/project_name_textview"
+      android:textColor="@color/darkTea"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/edit_project_heading" />
+
+  <EditText
+      android:id="@+id/edit_project_name"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/text_border"
+      android:hint="Enter project name"
+      android:importantForAutofill="no"
+      android:inputType="text"
+      android:minHeight="48dp"
+      android:padding="12dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/project_name_textview"
+      tools:ignore="HardcodedText" />
+
+  <TextView
+      android:id="@+id/project_desc_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:text="@string/project_desc_textview"
+      android:textColor="@color/darkTea"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/edit_project_name" />
+
+  <EditText
+      android:id="@+id/edit_project_desc"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/text_border"
+      android:gravity="top|start"
+      android:hint="Enter project description"
+      android:importantForAutofill="no"
+      android:inputType="textMultiLine"
+      android:minHeight="56dp"
+      android:padding="12dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/project_desc_textview"
+      tools:ignore="HardcodedText" />
+
+  <TextView
+      android:id="@+id/time_range_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:text="@string/time_range_textview"
+      android:textColor="@color/darkTea"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/edit_project_desc" />
+
+  <LinearLayout
+      android:id="@+id/time_range"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:orientation="horizontal"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/time_range_textview">
+
+    <EditText
+        android:id="@+id/edit_startDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/text_border"
+        android:hint="@string/start_date_hint"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/edit_endDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_weight="1"
+        android:background="@drawable/text_border"
+        android:hint="@string/end_date_hint"
+        android:importantForAutofill="no"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:padding="12dp" />
+  </LinearLayout>
+
+  <TextView
+      android:id="@+id/status_textview"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="24dp"
+      android:text="@string/status_textview"
+      android:textColor="@color/darkTea"
+      android:textSize="18sp"
+      android:textStyle="bold"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/time_range" />
+
+  <Spinner
+      android:id="@+id/spinnerStatus"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/text_border"
+      android:minHeight="48dp"
+      android:padding="12dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/status_textview"
+      app:layout_constraintWidth_percent="0.4" />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="24dp"
+      android:orientation="horizontal"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent">
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/lightRed"
+        android:padding="16dp"
+        android:text="@string/delete_btn_text"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/update_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/tea"
+        android:padding="16dp"
+        android:text="@string/update_btn_text"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+  </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
