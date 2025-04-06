@@ -5,4 +5,5 @@
     <string name="delete_btn_text">DELETE</string>
     <string name="update_btn_text">UPDATE</string>
     <string name="create_btn_text">CREATE</string>
+    <string name="status_textview">STATUS</string>
 </resources>
