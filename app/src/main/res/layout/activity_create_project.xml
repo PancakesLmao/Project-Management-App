@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/edit_project_name" />
 
     <EditText
-        android:id="@+id/etProjectDescription"
+        android:id="@+id/edit_project_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -97,7 +97,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etProjectDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_project_desc" />
 
     <LinearLayout
         android:id="@+id/time_range"

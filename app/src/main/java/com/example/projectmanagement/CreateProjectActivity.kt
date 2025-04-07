@@ -46,7 +46,7 @@ class CreateProjectActivity : AppCompatActivity() {
 
     private fun createNewProject() {
         val name = binding.editProjectName.text.toString().trim()
-        val description = binding.etProjectDescription.text.toString().trim()
+        val description = binding.etProjectDescription?.text.toString().trim()
         val startDate = binding.editStartDate.text.toString().trim()
         val dueDate = binding.editEndDate.text.toString().trim()
 

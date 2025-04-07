@@ -36,6 +36,11 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+//        For testing purposes
+        fun setInstance(database: AppDatabase) {
+            INSTANCE = database
+        }
+
     }
 
     private class DatabaseCallback : Callback() {
