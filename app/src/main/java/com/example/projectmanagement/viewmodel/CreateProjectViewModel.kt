@@ -9,11 +9,16 @@ import com.example.projectmanagement.data.local.AppDatabase
 import com.example.projectmanagement.data.model.Project
 import com.example.projectmanagement.data.repository.CreateProjectRepository
 import kotlinx.coroutines.launch
+import kotlin.compareTo
+import kotlin.text.toInt
 
 class CreateProjectViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CreateProjectRepository
     private val _createResult = MutableLiveData<Boolean>()
     val createResult: LiveData<Boolean> get() = _createResult
+
+    private val _createdProject = MutableLiveData<Project>()
+    val createdProject: LiveData<Project> get() = _createdProject
 
     init {
         val projectsDao = AppDatabase.getDatabase(application).projectsDao()
@@ -34,6 +39,9 @@ class CreateProjectViewModel(application: Application) : AndroidViewModel(applic
             )
             val result = repository.insertNewProject(project)
             _createResult.postValue(result > 0)
+            if (result > 0) {
+                _createdProject.postValue(project.copy(projectId = result.toInt()))
+            }
         }
     }
 }

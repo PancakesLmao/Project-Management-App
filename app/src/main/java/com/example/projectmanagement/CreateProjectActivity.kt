@@ -1,6 +1,7 @@
 package com.example.projectmanagement
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,11 @@ class CreateProjectActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Failed to create project", Toast.LENGTH_SHORT).show()
             }
+        }
+        viewModel.createdProject.observe(this) { project ->
+            Log.d("CreateProjectActivity", "New project created: ${project.projectId}, Name: ${project.name}, " +
+                    "Description: ${project.description}, Start Date: ${project.startDate}, " +
+                    "Due Date: ${project.dueDate}, Status: ${project.status}, Created By: ${project.createdBy}")
         }
     }
 
