@@ -1,4 +1,4 @@
-﻿# Project Managment App - Assignment 3 Submission
+﻿# Project Managment App
 
 ## Overview
 This repository contains my submission for ITea Project, written in **Kotlin**. The app that help ITea Lab manage their memebers' projects with ease.
